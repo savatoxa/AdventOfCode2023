@@ -5,3 +5,10 @@ D:\Sava\coursera\CS\AdventOfCode2023\obj\Debug\AdventOfCode2023.csproj.AssemblyR
 D:\Sava\coursera\CS\AdventOfCode2023\obj\Debug\AdventOfCode2023.csproj.CoreCompileInputs.cache
 D:\Sava\coursera\CS\AdventOfCode2023\obj\Debug\AdventOfCode2023.exe
 D:\Sava\coursera\CS\AdventOfCode2023\obj\Debug\AdventOfCode2023.pdb
+C:\Code\AdventOfCode2023\bin\Debug\AdventOfCode2023.exe.config
+C:\Code\AdventOfCode2023\bin\Debug\AdventOfCode2023.exe
+C:\Code\AdventOfCode2023\bin\Debug\AdventOfCode2023.pdb
+C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.csprojAssemblyReference.cache
+C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.csproj.CoreCompileInputs.cache
+C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.exe
+C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.pdb

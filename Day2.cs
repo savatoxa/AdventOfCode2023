@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode2023
+public class Scanner2
 {
-    class Day2
+    Parser parser = new Parser();
+    public List<List<List<Tuple<int, string>>>> GetAllGames(string data)
     {
+    List<List<List<Tuple<int, string>>>> allGames = new List<List<List<Tuple<int, string>>>>();
+    parser.GetAllGames(data);
+    return allGames;
     }
 }

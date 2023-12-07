@@ -22,6 +22,19 @@ public class Parser
 	{
 		return dataStr.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
 	}
+    public List<List<List<Tuple<int, string>>>> GetAllGames(string data)
+    {
+        List<List<List<Tuple<int, string>>>> allGames = new List<List<List<Tuple<int, string>>>>();
+        string[] gameStr = SplitStrByLines(data);
+        gameStr.ToList().ForEach(t => Console.WriteLine(t));
+        foreach (var game in gameStr)
+        {
+            string[] gameRounds = game.Split(':');
+            //gameRounds.ToList().ForEach(t => Console.WriteLine(t));
+            Console.WriteLine(gameRounds[1]);
+        }
+        return allGames;
+    }
 	public List<List<int>> CreateListOfListsOfInt(string dataStr)
 	{
 		List<List<int>> listOfListsOfNums = new List<List<int>>();
