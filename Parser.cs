@@ -27,13 +27,36 @@ public class Parser
         List<List<List<Tuple<int, string>>>> allGames = new List<List<List<Tuple<int, string>>>>();
         string[] gameStr = SplitStrByLines(data);
         gameStr.ToList().ForEach(t => Console.WriteLine(t));
-        foreach (var game in gameStr)
+        foreach (var line in gameStr)
         {
-            string[] gameRounds = game.Split(':');
-            //gameRounds.ToList().ForEach(t => Console.WriteLine(t));
-            Console.WriteLine(gameRounds[1]);
-        }
-        return allGames;
+			List<List<Tuple<int, string>>> gamelist = new List<List<Tuple<int, string>>>();
+            string[] game = line.Split(':');
+			string[] sets = game[1].Split(';');
+			foreach (var set in sets)
+			{
+				string[] cubes = set.Split(',');
+				List<Tuple<int, string>> setslist = new List<Tuple<int, string>>();
+				foreach (var cube in cubes)
+				{
+					var numcubestr = SplitStrBySpaces2(cube);
+					var numcubes = Tuple.Create(Int32.Parse(numcubestr[0]), numcubestr[1]);
+					setslist.Add(numcubes);
+				}
+				gamelist.Add(setslist);
+			}
+			allGames.Add(gamelist);
+		}
+		foreach (var gameset in allGames)
+		{
+			Console.WriteLine("___");
+			foreach (var set in gameset)
+			{
+				Console.WriteLine("---");
+				set.ForEach(t => Console.WriteLine(t));
+			}
+		}
+
+		return allGames;
     }
 	public List<List<int>> CreateListOfListsOfInt(string dataStr)
 	{
