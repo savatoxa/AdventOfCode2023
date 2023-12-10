@@ -26,7 +26,6 @@ public class Parser
     {
         List<List<List<Tuple<int, string>>>> allGames = new List<List<List<Tuple<int, string>>>>();
         string[] gameStr = SplitStrByLines(data);
-        gameStr.ToList().ForEach(t => Console.WriteLine(t));
         foreach (var line in gameStr)
         {
 			List<List<Tuple<int, string>>> gamelist = new List<List<Tuple<int, string>>>();
@@ -46,16 +45,6 @@ public class Parser
 			}
 			allGames.Add(gamelist);
 		}
-		foreach (var gameset in allGames)
-		{
-			Console.WriteLine("___");
-			foreach (var set in gameset)
-			{
-				Console.WriteLine("---");
-				set.ForEach(t => Console.WriteLine(t));
-			}
-		}
-
 		return allGames;
     }
 	public List<List<int>> CreateListOfListsOfInt(string dataStr)

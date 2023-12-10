@@ -35,6 +35,6 @@ class Program
         //Scanner1 scanner1 = new Scanner1();
         Scanner2 scanner2 = new Scanner2();
         //Console.WriteLine(scanner1.CalcCalib(dataStr1));
-        scanner2.GetAllGames(dataStr2);
+        Console.WriteLine(scanner2.GetValidGames(dataStr2));
 	}
 }
