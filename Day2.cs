@@ -17,30 +17,62 @@ public class Scanner2
     public int GetValidGames(string data)
     {
         var allGames = GetAllGames(data);
-        int sumgames = 1;
-        bool gametrue = true;
-        foreach (var game in allGames)
-        {
-            foreach (var set in game)
-                set.ForEach(t => Console.WriteLine(t));
-        }
+        int sumgames = 0;
+        //foreach (var game in allGames)
+        //{
+        //    foreach (var set in game)
+        //        set.ForEach(t => Console.WriteLine(t));
+        //}
         for (var i = 0; i < allGames.Count; i++)
         {
+            bool gametrue = true;
+            Console.WriteLine("___");
+            Console.WriteLine(i);
             foreach (var set in allGames[i])
             {
+                Console.WriteLine("---");
                 foreach (var draw in set)
                 {
-                    if (draw.Item2 == "red" && draw.Item1 > maxred)
-                        gametrue = false;
-                    if (draw.Item2 == "green" && draw.Item1 > maxgreen)
-                        gametrue = false;
-                    if (draw.Item2 == "blue" && draw.Item1 > maxblue)
-                        gametrue = false;
+                    Console.WriteLine(draw);
+                    if (draw.Item2 == "red")
+                    {
+                        Console.WriteLine(draw.Item2);
+                        if (draw.Item1 > maxred)
+                        {
+                            Console.WriteLine(draw.Item1);
+                            gametrue = false;
+                            Console.WriteLine(gametrue);
+                        }
+                    }
+                    if (draw.Item2 == "green")
+                    {
+                        Console.WriteLine(draw.Item2);
+                        if (draw.Item1 > maxgreen)
+                        {
+                            Console.WriteLine(draw.Item1);
+                            gametrue = false;
+                            Console.WriteLine(gametrue);
+                        }
+                    }
+                    if (draw.Item2 == "blue")
+                    {
+                        Console.WriteLine(draw.Item2);
+                        if (draw.Item1 > maxblue)
+                        {
+                            Console.WriteLine(draw.Item1);
+                            gametrue = false;
+                            Console.WriteLine(gametrue);
+                        }
+                    }
                 }
-                if (gametrue)
-                    sumgames += i;
+            }
+            if (gametrue)
+            {
+                sumgames += i+1;
+                Console.WriteLine("{0}, {1}, {2}", gametrue.ToString(), sumgames.ToString(), i.ToString());
             }
         }
+        Console.WriteLine("res:");
     return sumgames;
     }
 }
