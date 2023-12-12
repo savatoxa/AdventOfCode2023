@@ -113,6 +113,14 @@ public class Parser
 		}
 		return transposedMatrix;
 	}
+	public List<List<char>> GetCharMatrix(string data)
+	{
+		List<List<char>> matrix = new List<List<char>>();
+		var rowStrArr = SplitStrByLines(data);
+		foreach (var row in rowStrArr)
+			matrix.Add(row.ToCharArray(0, row.Length - 1).ToList());
+		return matrix;
+	}
 	public List<List<char>> CreateListStaks(string data)
 	{
 		List<List<char>> rows = new List<List<char>>();
@@ -130,7 +138,6 @@ public class Parser
 		foreach (var col in cols)
 			while (col[col.Count - 1] == ' ')
 				col.Remove(col[col.Count - 1]);
-
 		return cols;
 	}
 	public List<int[]> CreateListMoves(string data)
@@ -179,9 +186,8 @@ public class Parser
 	}
 	public void PrintMatrix(List<List<char>> matrix)
 	{
-		Console.WriteLine("");
 		foreach (var row in matrix)
-			Console.WriteLine("[{0}]", string.Join(", ", row));
+			Console.WriteLine("[{0}]", string.Join(" ", row));
 	}
 	public void PrintGrid(List<List<int>> grid)
 	{
