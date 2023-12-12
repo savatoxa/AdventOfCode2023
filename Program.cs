@@ -27,7 +27,7 @@ class Program
 	{
 		var workingDirectory = DirectoriesMethods.DirUp(Environment.CurrentDirectory, 2);
 
-		string dataStr1 = File.ReadAllText(workingDirectory + "\\" + "data1.txt");
+		//string dataStr1 = File.ReadAllText(workingDirectory + "\\" + "data1.txt");
 		//string dataStr1 = File.ReadAllText(workingDirectory + "\\" + "data1_test_1.txt");
 		//string dataStr1 = File.ReadAllText(workingDirectory + "\\" + "data1_test_2.txt");
         //string dataStr2 = File.ReadAllText(workingDirectory + "\\" + "data2_test1.txt");

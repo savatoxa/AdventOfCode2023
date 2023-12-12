@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 public class Scanner2
 {
     Parser parser = new Parser();
-    int maxred = 12;
-    int maxgreen = 13;
-    int maxblue = 14;
     public List<List<List<Tuple<int, string>>>> GetAllGames(string data)
     {
         return parser.GetAllGames(data);
@@ -18,61 +15,27 @@ public class Scanner2
     {
         var allGames = GetAllGames(data);
         int sumgames = 0;
-        //foreach (var game in allGames)
-        //{
-        //    foreach (var set in game)
-        //        set.ForEach(t => Console.WriteLine(t));
-        //}
         for (var i = 0; i < allGames.Count; i++)
         {
-            bool gametrue = true;
-            Console.WriteLine("___");
-            Console.WriteLine(i);
+            int maxred = 0;
+            int maxgreen = 0;
+            int maxblue = 0;
+            int multcol = 0;
             foreach (var set in allGames[i])
             {
-                Console.WriteLine("---");
                 foreach (var draw in set)
                 {
-                    Console.WriteLine(draw);
-                    if (draw.Item2 == "red")
-                    {
-                        Console.WriteLine(draw.Item2);
-                        if (draw.Item1 > maxred)
-                        {
-                            Console.WriteLine(draw.Item1);
-                            gametrue = false;
-                            Console.WriteLine(gametrue);
-                        }
-                    }
-                    if (draw.Item2 == "green")
-                    {
-                        Console.WriteLine(draw.Item2);
-                        if (draw.Item1 > maxgreen)
-                        {
-                            Console.WriteLine(draw.Item1);
-                            gametrue = false;
-                            Console.WriteLine(gametrue);
-                        }
-                    }
-                    if (draw.Item2 == "blue")
-                    {
-                        Console.WriteLine(draw.Item2);
-                        if (draw.Item1 > maxblue)
-                        {
-                            Console.WriteLine(draw.Item1);
-                            gametrue = false;
-                            Console.WriteLine(gametrue);
-                        }
-                    }
+                    if (draw.Item2 == "red" && draw.Item1 > maxred)
+                        maxred = draw.Item1;
+                    if (draw.Item2 == "green" && draw.Item1 > maxgreen)
+                        maxgreen = draw.Item1; ;
+                    if (draw.Item2 == "blue" && draw.Item1 > maxblue)
+                        maxblue = draw.Item1;
                 }
+                multcol = maxred * maxgreen * maxblue;
             }
-            if (gametrue)
-            {
-                sumgames += i+1;
-                Console.WriteLine("{0}, {1}, {2}", gametrue.ToString(), sumgames.ToString(), i.ToString());
-            }
+            sumgames += multcol;
         }
-        Console.WriteLine("res:");
     return sumgames;
     }
 }
