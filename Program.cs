@@ -39,6 +39,6 @@ class Program
 		Scanner3 scanner3 = new Scanner3();
 		//Console.WriteLine(scanner1.CalcCalib(dataStr1));
 		//Console.WriteLine(scanner2.GetValidGames(dataStr2));
-		Console.WriteLine(scanner3.PartNumbers(dataStr3));
+		Console.WriteLine(scanner3.SumPartNumbers(dataStr3));
 	}
 }

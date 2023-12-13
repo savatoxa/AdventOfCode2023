@@ -11,11 +11,22 @@ public class Scanner3
     {
         return parser.GetCharMatrix(data);
     }
-    public int PartNumbers(string data)
+    public int SumPartNumbers(string data)
     {
         var numSymMatrix = GetMatrix(data);
         parser.PrintMatrix(numSymMatrix);
         int sum = 0;
+
+        for (int j = 0; j < numSymMatrix.Count - 1; j++)
+            for (int i = 0; i < numSymMatrix[j].Count - 1; i++)
+            {
+                var numsym = numSymMatrix[j][i];
+                if (!char.IsDigit(numsym) && numsym != '.')
+                {
+                    Console.WriteLine("{0}, {1}, {2}", numsym, i, j);
+                }
+            }
+
         return sum;
     }
 }
