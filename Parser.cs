@@ -118,7 +118,7 @@ public class Parser
 		List<List<char>> matrix = new List<List<char>>();
 		var rowStrArr = SplitStrByLines(data);
 		foreach (var row in rowStrArr)
-			matrix.Add(row.ToCharArray(0, row.Length - 1).ToList());
+			matrix.Add(row.ToCharArray(0, row.Length).ToList());
 		return matrix;
 	}
 	public List<List<char>> CreateListStaks(string data)
