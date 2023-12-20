@@ -22,6 +22,17 @@ public class Parser
 	{
 		return dataStr.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
 	}
+	public List<Tuple<List<int>, List<int>>> GetAllCards(string data)
+	{
+		List<Tuple<List<int>, List<int>>> allcards = new List<Tuple<List<int>, List<int>>>();
+		string[] cardStr = SplitStrByLines(data);
+		foreach (var card in cardStr)
+		{
+			string[] cardnumsstr = (card.Split(':')[1]).Split('|');
+			allcards.Add(Tuple.Create(SplitStrBySpaces(cardnumsstr[0]).ToList(), SplitStrBySpaces(cardnumsstr[1]).ToList()));
+		}
+		return allcards;
+	}
     public List<List<List<Tuple<int, string>>>> GetAllGames(string data)
     {
         List<List<List<Tuple<int, string>>>> allGames = new List<List<List<Tuple<int, string>>>>();
