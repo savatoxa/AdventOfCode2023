@@ -34,8 +34,8 @@ class Program
 		//string dataStr2 = File.ReadAllText(workingDirectory + "\\" + "data2.txt");
 		//string dataStr3 = File.ReadAllText(workingDirectory + "\\" + "data3_test1.txt");
 		//string dataStr3 = File.ReadAllText(workingDirectory + "\\" + "data3.txt");
-		//string dataStr4 = File.ReadAllText(workingDirectory + "\\" + "data4_test1.txt");
-		string dataStr4 = File.ReadAllText(workingDirectory + "\\" + "data4.txt");
+		string dataStr4 = File.ReadAllText(workingDirectory + "\\" + "data4_test1.txt");
+		//string dataStr4 = File.ReadAllText(workingDirectory + "\\" + "data4.txt");
 		Parser parser = new Parser();
 		//Scanner1 scanner1 = new Scanner1();
 		//Scanner2 scanner2 = new Scanner2();
@@ -44,6 +44,6 @@ class Program
 		//Console.WriteLine(scanner1.CalcCalib(dataStr1));
 		//Console.WriteLine(scanner2.GetValidGames(dataStr2));
 		//Console.WriteLine(scanner3.SumPartNumbers(dataStr3));
-		Console.WriteLine(scanner4.AllCardsPoints(dataStr4));
+		Console.WriteLine(scanner4.AllCardsNum(dataStr4));
 	}
 }
