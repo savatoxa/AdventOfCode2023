@@ -37,7 +37,7 @@ public class Scanner4
     public int AllCardsNum(string data)
     {
         GetAllCards(data);
-        int totalcards = 0;
+        int totalcards = allcards.Count;
 
         for (var i = 0; i < allcards.Count; i++)
         {
@@ -47,6 +47,11 @@ public class Scanner4
             //Console.WriteLine("");
             var nextcards = GetNextCards(i);
             nextcards.ForEach(t => Console.Write(t));
+            totalcards += nextcards.Count;
+            for (var j = 0; j < nextcards.Count; j++)
+            {
+                GetNextCards(j);
+            }
             Console.WriteLine("");
         }
         Console.WriteLine("__");

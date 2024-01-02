@@ -11,5 +11,4 @@ C:\Code\AdventOfCode2023\bin\Debug\AdventOfCode2023.pdb
 C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.csproj.CoreCompileInputs.cache
 C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.exe
 C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.pdb
-C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.csproj.AssemblyReference.cache
-C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.csproj.SuggestedBindingRedirects.cache
+C:\Code\AdventOfCode2023\obj\Debug\AdventOfCode2023.csprojAssemblyReference.cache
