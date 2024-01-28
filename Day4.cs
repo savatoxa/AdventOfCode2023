@@ -26,8 +26,8 @@ public class Scanner4
         foreach (var num in allcards[cardnum].Item2)
             if (allcards[cardnum].Item1.Contains(num))
                 cardmatches++;
-        Console.WriteLine("cn: " + cardnum.ToString());
-        Console.WriteLine("cm: " + cardmatches.ToString());
+        Console.WriteLine("cardnum: " + cardnum.ToString());
+        Console.WriteLine("cardmatches: " + cardmatches.ToString());
         for (var i = 1; i <= cardmatches; i++)
         {
             nextCards.Add(cardnum + i);
@@ -46,7 +46,9 @@ public class Scanner4
             //card.Item2.ForEach(n => Console.Write(n.ToString() + ","));
             //Console.WriteLine("");
             var nextcards = GetNextCards(i);
+            Console.Write("nextcards: ");
             nextcards.ForEach(t => Console.Write(t));
+            Console.WriteLine("");
             totalcards += nextcards.Count;
             for (var j = 0; j < nextcards.Count; j++)
             {
