@@ -8,9 +8,12 @@ public class Scanner4
 {
     Parser parser = new Parser();
     public List<Tuple<List<int>, List<int>>> allcards = new List<Tuple<List<int>, List<int>>>();
+    public Dictionary<int, int> cardscopies = new Dictionary<int, int>();
     public void GetAllCards(string data)
     {
         allcards = parser.GetAllCards(data);
+        for (var i = 0; i < allcards.Count; i++)
+            cardscopies[i] = 1;
     }
     public int IntPow(int x, int n)
     {
@@ -50,12 +53,14 @@ public class Scanner4
             nextcards.ForEach(t => Console.Write(t));
             Console.WriteLine("");
             totalcards += nextcards.Count;
-            for (var j = 0; j < nextcards.Count; j++)
-            {
-                GetNextCards(j);
-            }
+            //for (var j = 0; j < nextcards.Count; j++)
+            //{
+            //    GetNextCards(j);
+            //}
             Console.WriteLine("");
         }
+        foreach (var card in cardscopies)
+            Console.WriteLine(card);
         Console.WriteLine("__");
         return totalcards;
     }
