@@ -52,15 +52,18 @@ public class Scanner4
             Console.Write("nextcards: ");
             nextcards.ForEach(t => Console.Write(t));
             Console.WriteLine("");
-            totalcards += nextcards.Count;
             //for (var j = 0; j < nextcards.Count; j++)
             //{
             //    GetNextCards(j);
             //}
             Console.WriteLine("");
+            foreach (var j in nextcards)
+                cardscopies[j]++;
         }
         foreach (var card in cardscopies)
             Console.WriteLine(card);
+        for (var i = 0; i < cardscopies.Count; i++)
+            totalcards += cardscopies[i];
         Console.WriteLine("__");
         return totalcards;
     }
