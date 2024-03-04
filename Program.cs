@@ -34,8 +34,8 @@ class Program
 		//string dataStr2 = File.ReadAllText(workingDirectory + "\\" + "data2.txt");
 		//string dataStr3 = File.ReadAllText(workingDirectory + "\\" + "data3_test1.txt");
 		//string dataStr3 = File.ReadAllText(workingDirectory + "\\" + "data3.txt");
-		string dataStr4 = File.ReadAllText(workingDirectory + "\\" + "data4_test1.txt");
-		//string dataStr4 = File.ReadAllText(workingDirectory + "\\" + "data4.txt");
+		//string dataStr4 = File.ReadAllText(workingDirectory + "\\" + "data4_test1.txt");
+		string dataStr4 = File.ReadAllText(workingDirectory + "\\" + "data4.txt");
 		Parser parser = new Parser();
 		//Scanner1 scanner1 = new Scanner1();
 		//Scanner2 scanner2 = new Scanner2();
