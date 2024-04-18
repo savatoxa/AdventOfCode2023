@@ -49,6 +49,6 @@ class Program
 		//Console.WriteLine(scanner2.GetValidGames(dataStr2));
 		//Console.WriteLine(scanner3.SumPartNumbers(dataStr3));
 		//Console.WriteLine(scanner4.AllCardsNum(dataStr4));
-		scanner5.GetAlmanac(dataStr5);
+		scanner5.Run(dataStr5);
 	}
 }
