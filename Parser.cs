@@ -13,18 +13,18 @@ public class Parser
 	{
 		return dataStr.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 	}
-	public int[] SplitStrBySpaces(string dataStr)
+	public Int64[] SplitStrBySpaces(string dataStr)
 	{
 		var strArr = dataStr.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
-		return Array.ConvertAll(strArr, int.Parse);
+		return Array.ConvertAll(strArr, Int64.Parse);
 	}
 	public string[] SplitStrBySpaces2(string dataStr)
 	{
 		return dataStr.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
 	}
-	public List<Tuple<List<int>, List<int>>> GetAllCards(string data)
+	public List<Tuple<List<Int64>, List<Int64>>> GetAllCards(string data)
 	{
-		List<Tuple<List<int>, List<int>>> allcards = new List<Tuple<List<int>, List<int>>>();
+		List<Tuple<List<Int64>, List<Int64>>> allcards = new List<Tuple<List<Int64>, List<Int64>>>();
 		string[] cardStr = SplitStrByLines(data);
 		foreach (var card in cardStr)
 		{
@@ -151,9 +151,9 @@ public class Parser
 				col.Remove(col[col.Count - 1]);
 		return cols;
 	}
-	public List<int[]> CreateListMoves(string data)
+	public List<Int64[]> CreateListMoves(string data)
 	{
-		List<int[]> moves = new List<int[]>();
+		List<Int64[]> moves = new List<Int64[]>();
 		var movesStr = SplitStrByLines(SplitStrByEmptyLines(data)[1]);
 		foreach (var str_ in movesStr)
 			moves.Add(SplitStrBySpaces(str_.Replace("move ", "").Replace("from ", "").Replace("to ", "")));
