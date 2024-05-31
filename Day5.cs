@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,16 +50,6 @@ public class Scanner5
         lightToTemperature = GetMap(parser.SplitStrByLines(dataStrArr[5]));
         temperatureToHumidity = GetMap(parser.SplitStrByLines(dataStrArr[6]));
         humidityToLocation = GetMap(parser.SplitStrByLines(dataStrArr[7]));
-
-        //seeds.ForEach(e => Console.Write(e + " "));
-        //Console.WriteLine("");
-        //PrintMap(seedsToSoil);
-        //PrintMap(soilToFertilizer);
-        //PrintMap(fertilizerToWater);
-        //PrintMap(waterToLight);
-        //PrintMap(lightToTemperature);
-        //PrintMap(temperatureToHumidity);
-        //PrintMap(humidityToLocation);
     }
     public long MapNumThroughSubmap(List<Int64> submapList, long num)
     {
@@ -87,9 +77,9 @@ public class Scanner5
         long res = 9223372036854775807;
         GetAlmanac(data);
         var watch = System.Diagnostics.Stopwatch.StartNew();
-        Parallel.For(0, seeds.Count / 2 - 1, i =>
+        for (var i = 0; i < seeds.Count/2 - 1; i ++)
         {
-            for (Int64 seed = seeds[i * 2]; seed < seeds[i * 2 + 1] + seeds[i * 2]; seed++)
+            for (Int64 seed = seeds[i*2]; seed < seeds[i*2 + 1] + seeds[i*2]; seed++)
             {
                 var seedToSoilMapped = MapNumThroughMap(seed, seedsToSoil);
                 var soilToFertilizerMapped = MapNumThroughMap(seedToSoilMapped, soilToFertilizer);
@@ -101,27 +91,10 @@ public class Scanner5
                 if (res > humidityToLocationMapped)
                     res = humidityToLocationMapped;
             }
-        });
-
-        //for (var i = 0; i < seeds.Count / 2 - 1; i++)
-        //{
-        //    for (Int64 seed = seeds[i * 2]; seed < seeds[i * 2 + 1] + seeds[i * 2]; seed++)
-        //    {
-        //        var seedToSoilMapped = MapNumThroughMap(seed, seedsToSoil);
-        //        var soilToFertilizerMapped = MapNumThroughMap(seedToSoilMapped, soilToFertilizer);
-        //        var fertilizerToWaterMapped = MapNumThroughMap(soilToFertilizerMapped, fertilizerToWater);
-        //        var waterToLightMapped = MapNumThroughMap(fertilizerToWaterMapped, waterToLight);
-        //        var lightToTemperatureMapped = MapNumThroughMap(waterToLightMapped, lightToTemperature);
-        //        var temperatureToHumidityMapped = MapNumThroughMap(lightToTemperatureMapped, temperatureToHumidity);
-        //        var humidityToLocationMapped = MapNumThroughMap(temperatureToHumidityMapped, humidityToLocation);
-        //        if (res > humidityToLocationMapped)
-        //            res = humidityToLocationMapped;
-        //    }
-        //}
-
+        }
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
-        //Console.WriteLine(seeds.Count);
+        Console.WriteLine(seeds.Count);
         Console.WriteLine("{0}, {1}", res + " ", elapsedMs);
     }
 }
