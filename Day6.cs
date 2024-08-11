@@ -53,7 +53,7 @@ public class Scanner6
     //public int GetAllRecords()
     //{
     //    int allRecords = 1;
-    //    for(var i =0; i < time.Count; i++)
+    //    for (var i = 0; i < time.Count; i++)
     //        allRecords *= MoreRecords(time[i], dist[i]);
     //    return allRecords;
     //}
