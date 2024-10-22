@@ -6,22 +6,122 @@ using System.Text;
 
 public class Scanner7
 {
-    List<Tuple<string, int>> cards = new List<Tuple<string, int>>();
-    Dictionary<char, int> cardStrength = new Dictionary<char, int> { {'A', 0}, {'K', 1}, {'Q', 2}, {'J', 3}, {'T', 4}, {'9', 5}, {'8', 6}, {'7', 7},
+    List<Tuple<string, int, int>> cards = new List<Tuple<string, int, int>>();
+    Dictionary<char, int> cardsAlphabet = new Dictionary<char, int> { {'A', 0}, {'K', 1}, {'Q', 2}, {'J', 3}, {'T', 4}, {'9', 5}, {'8', 6}, {'7', 7},
         {'6', 8}, {'5', 9}, {'4', 10}, {'3', 11}, {'2', 12} };
     public string SortByAlphabet(string card)
     {
-        char[] sortedChars = card.OrderBy(c => cardStrength[c]).ToArray();
+        char[] sortedChars = card.OrderBy(c => cardsAlphabet[c]).ToArray();
         return new string(sortedChars);
+    }
+    public int CompareStrings(string card1, string card2)
+    {
+        for(var i = 0; i < card1.Length; i++)
+        {
+            if (cardsAlphabet[card1[i]] > cardsAlphabet[card2[i]])
+                return 2;
+            else if (cardsAlphabet[card1[i]] < cardsAlphabet[card2[i]])
+                return 1;
+        }
+        return 0;
+    }
+    public void SortTuplesListByItem3(List<Tuple<string, int, int>> cardslist)
+    {
+        cardslist.Sort((x, y) => y.Item3.CompareTo(x.Item3));
+    }
+    public List<Tuple<string, int, int>> SwapTwoInCardslist(List<Tuple<string, int, int>> cardslist, int idx1, int idx2)
+    {
+        var elemtmp = cardslist[idx1];
+        cardslist[idx1] = cardslist[idx2];
+        cardslist[idx2] = elemtmp;
+        return cardslist;
+    }
+    public List<Tuple<string, int, int>> BubbleSortStrings(List<Tuple<string, int, int>> cardslist)
+    {
+        for (int i = 0; i < cardslist.Count - 1; i++)
+        {
+            for (int j = 0; j < cardslist.Count - i - 1; j++)
+            {
+                if (CompareStrings(cardslist[j].Item1, cardslist[j + 1].Item1) == 1)
+                    SwapTwoInCardslist(cardslist, j, j + 1);
+            }
+        }
+        return cardslist;
     }
     public void GetCards(string data)
     {
         Parser parser = new Parser();
         var cardsStr = parser.CreateListOfRoundsStr(data);
         foreach(var cardStr in cardsStr)
-            cards.Add(Tuple.Create(cardStr.Item1, Int32.Parse(cardStr.Item2)));
-        cards.ForEach(c => Console.WriteLine(c));
+            cards.Add(Tuple.Create(cardStr.Item1, Int32.Parse(cardStr.Item2), GetCardStrength(cardStr.Item1)));
+        SortTuplesListByItem3(cards);
     }
+    public List<Tuple<string, int, int>> GetSublist(int start, int end)
+    {
+        List<Tuple<string, int, int>> sublist = new List<Tuple<string, int, int>>();
+        for (int i = start; i <= end; i++)
+            sublist.Add(cards[i]);
+        return sublist;
+    }
+    public List<Tuple<int, int>> GetIndexes()
+    {
+        List<Tuple<int, int>> indexes = new List<Tuple<int, int>>();
+        int c = 0;
+        for(var i = 0; i < cards.Count - 1; i++)
+        {
+            c++;
+            if (cards[i].Item3 != cards[i + 1].Item3)
+            {
+                indexes.Add(Tuple.Create(i + 1 - c, i));
+                c = 0;
+            }
+        }
+        for(var i = cards.Count - 1; i >= 0; i--)
+        {
+            if (cards[i].Item3 != cards[i - 1].Item3)
+            {
+                indexes.Add(Tuple.Create(i, cards.Count - 1));
+                break;
+            }
+        }
+        return indexes;
+    }
+    public List<Tuple<string, int, int>> SortSublists(List<Tuple<int, int>> indexes)
+    {
+        List<Tuple<string, int, int>> sortedList = new List<Tuple<string, int, int>>();
+        foreach(var index in indexes)
+        {
+            var sublist = BubbleSortStrings(GetSublist(index.Item1, index.Item2));
+            sortedList.AddRange(sublist);
+        }
+        return sortedList;
+    }
+    public int TotalWins()
+    {
+        var cardslist = SortSublists(GetIndexes());
+        var totalwins = 0;
+        for (var i = 0; i < cardslist.Count; i++)
+            totalwins += (i + 1) * cardslist[i].Item2;
+        return totalwins;
+    }
+    public int GetCardStrength(string card)
+    {   if (FindFiveOfAKind(card))
+            return 1;
+        if (FourOfAKind(card))
+            return 2;
+        if (FullHouse(card))
+            return 3;
+        if (ThreeOfAKind(card))
+            return 4;
+        if (TwoPair(card))
+            return 5;
+        if (OnePair(card))
+            return 6;
+        if (HighCard(card))
+            return 7;
+        return 0;
+    }
+
     public int NumberOfOccurrences (char symbol, string word)
     {
         int count = 0;
@@ -125,8 +225,13 @@ public class Scanner7
     public void Run(string data)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
+
         GetCards(data);
-        //Console.WriteLine(OnePair("abbdc"));
+        cards.ForEach(c => Console.WriteLine(c));
+        Console.WriteLine("___");
+        //GetIndexes().ForEach(c => Console.WriteLine(c));
+        //SortSublists(GetIndexes()).ForEach(c => Console.WriteLine(c));
+        //Console.WriteLine(TotalWins());
         cards.ForEach(c => Console.WriteLine(SortByAlphabet(c.Item1)));
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
