@@ -40,8 +40,8 @@ class Program
 		//string dataStr5 = File.ReadAllText(workingDirectory + "\\" + "data5.txt");
 		//string dataStr6 = File.ReadAllText(workingDirectory + "\\" + "data6_test1.txt");
 		//string dataStr6 = File.ReadAllText(workingDirectory + "\\" + "data6.txt");
-		//string dataStr7 = File.ReadAllText(workingDirectory + "\\" + "data7.txt");
-		string dataStr7 = File.ReadAllText(workingDirectory + "\\" + "data7_test1.txt");
+		string dataStr7 = File.ReadAllText(workingDirectory + "\\" + "data7.txt");
+		//string dataStr7 = File.ReadAllText(workingDirectory + "\\" + "data7_test1.txt");
 
 
 

@@ -7,8 +7,8 @@ using System.Text;
 public class Scanner7
 {
     List<Tuple<string, int, int>> cards = new List<Tuple<string, int, int>>();
-    Dictionary<char, int> cardsAlphabet = new Dictionary<char, int> { {'A', 0}, {'K', 1}, {'Q', 2}, {'J', 3}, {'T', 4}, {'9', 5}, {'8', 6}, {'7', 7},
-        {'6', 8}, {'5', 9}, {'4', 10}, {'3', 11}, {'2', 12} };
+    Dictionary<char, int> cardsAlphabet = new Dictionary<char, int> { {'A', 0}, {'K', 1}, {'Q', 2}, {'T', 3}, {'9', 4}, {'8', 5}, {'7', 6},
+        {'6', 7}, {'5', 8}, {'4', 9}, {'3', 10}, {'2', 11}, {'J', 12} };
     public string SortByAlphabet(string card)
     {
         char[] sortedChars = card.OrderBy(c => cardsAlphabet[c]).ToArray();
@@ -105,21 +105,58 @@ public class Scanner7
         return totalwins;
     }
     public int GetCardStrength(string card)
-    {   if (FindFiveOfAKind(card))
+    {   if (NumberOfOccurrences('J', card) == 0)
+        {
+            if (FiveOfAKind(card))
+                return 1;
+            if (FourOfAKind(card))
+                return 2;
+            if (FullHouse(card))
+                return 3;
+            if (ThreeOfAKind(card))
+                return 4;
+            if (TwoPair(card))
+                return 5;
+            if (OnePair(card))
+                return 6;
+            if (HighCard(card))
+                return 7;
+        }
+        if (NumberOfOccurrences('J', card) == 1)
+        {
+            if (FourOfAKind(card))
+                return 1;
+            if (ThreeOfAKind(card))
+                return 2;
+            if (TwoPair(card))
+                return 3;
+            if (OnePair(card))
+                return 4;
+            if (HighCard(card))
+                return 6;
+        }
+        if (NumberOfOccurrences('J', card) == 2)
+        {
+            if (FullHouse(card))
+                return 1;
+            if (TwoPair(card))
+                return 2;
+            if (OnePair(card))
+                return 4;
+        }
+        if (NumberOfOccurrences('J', card) == 3)
+        {
+            if (FullHouse(card))
+                return 1;
+            if (ThreeOfAKind(card))
+                return 2;
+        }
+        if (NumberOfOccurrences('J', card) == 4)
             return 1;
-        if (FourOfAKind(card))
-            return 2;
-        if (FullHouse(card))
-            return 3;
-        if (ThreeOfAKind(card))
-            return 4;
-        if (TwoPair(card))
-            return 5;
-        if (OnePair(card))
-            return 6;
-        if (HighCard(card))
-            return 7;
-        return 0;
+        if (NumberOfOccurrences('J', card) == 5)
+            return 1;
+        
+        return 0;      
     }
 
     public int NumberOfOccurrences (char symbol, string word)
@@ -173,7 +210,7 @@ public class Scanner7
             }
         return false;
     }
-    public bool FindFiveOfAKind(string card)
+    public bool FiveOfAKind(string card)
     {
         for(int i = 0; i < card.Length - 1; i++)
         {
@@ -227,12 +264,12 @@ public class Scanner7
         var watch = System.Diagnostics.Stopwatch.StartNew();
 
         GetCards(data);
-        cards.ForEach(c => Console.WriteLine(c));
+        //cards.ForEach(c => Console.WriteLine(c));
         Console.WriteLine("___");
         //GetIndexes().ForEach(c => Console.WriteLine(c));
         //SortSublists(GetIndexes()).ForEach(c => Console.WriteLine(c));
-        //Console.WriteLine(TotalWins());
-        cards.ForEach(c => Console.WriteLine(SortByAlphabet(c.Item1)));
+        Console.WriteLine(TotalWins());
+        //cards.ForEach(c => Console.WriteLine(SortByAlphabet(c.Item1)));
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
         Console.WriteLine(elapsedMs);
