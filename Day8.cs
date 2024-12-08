@@ -23,6 +23,31 @@ public class Scanner8
             map.Add(Tuple.Create(submap.Substring(0, 3), submap.Substring(7, 3), submap.Substring(12, 3)));
     }
 
+    public string GetStringByString(string input)
+    {
+        foreach (var str_ in map)
+            if (str_.Item1 == input)
+                return input;
+        return "";
+    }
+
+    public string GetSrtringByMove(string input)
+    {
+        if (input == "ZZZ")
+            return "ZZZ";
+        else
+        {
+            foreach (var move in moves)
+            {
+                if (move == 'L')
+                {
+                    return GetStringByString(map);
+                }
+            }
+        }
+        return "";
+    }
+
     public void Run(string data)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
