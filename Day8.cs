@@ -23,30 +23,41 @@ public class Scanner8
             map.Add(Tuple.Create(submap.Substring(0, 3), submap.Substring(7, 3), submap.Substring(12, 3)));
     }
 
-    public string GetNodeByMove(string node, string move)
+    public string GetNodeByMove(string node, char move)
     {
     foreach (var nodes in map)
         if (nodes.Item1 == node)
         {
-            if (move == "R")
+            if (move == 'R')
                 return nodes.Item3;
-            if (move == "L")
+            if (move == 'L')
                 return nodes.Item2;
         }
         return "";
     }
 
-
+    public Tuple<string, int> GetNodeByAllMoves(string inputnode, int count)
+    {
+        foreach(var move in moves)
+        {
+            inputnode = GetNodeByMove(inputnode, move);
+            count++;
+        }
+        if (inputnode == "ZZZ")
+            return Tuple.Create(inputnode, count);
+        else
+            return GetNodeByAllMoves(inputnode, count);
+    }
 
     public void Run(string data)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
         CreateMoves(data);
         CreateMap(data);
-        Console.WriteLine(moves);
-        map.ForEach(m => Console.WriteLine(m));
+        //Console.WriteLine(moves);
+        //map.ForEach(m => Console.WriteLine(m));
         Console.WriteLine("___");
-        Console.WriteLine(GetNodeByMove("CCC", "L"));
+        Console.WriteLine(GetNodeByAllMoves("AAA", 0));
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
         Console.WriteLine(elapsedMs);
