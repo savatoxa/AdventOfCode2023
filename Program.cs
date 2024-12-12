@@ -40,7 +40,7 @@ class Program
 		//string dataStr5 = File.ReadAllText(workingDirectory + "\\" + "data5.txt");
 		//string dataStr6 = File.ReadAllText(workingDirectory + "\\" + "data6_test1.txt");
 		//string dataStr6 = File.ReadAllText(workingDirectory + "\\" + "data6.txt");
-		string dataStr7 = File.ReadAllText(workingDirectory + "\\" + "data7.txt");
+		//string dataStr7 = File.ReadAllText(workingDirectory + "\\" + "data7.txt");
         //string dataStr7 = File.ReadAllText(workingDirectory + "\\" + "data7_test1.txt");
         //string dataStr8 = File.ReadAllText(workingDirectory + "\\" + "data8.txt");
         string dataStr8 = File.ReadAllText(workingDirectory + "\\" + "data8_test1.txt");
@@ -55,7 +55,7 @@ class Program
 		//Scanner4 scanner4 = new Scanner4();
 		//Scanner5 scanner5 = new Scanner5();
 		//Scanner6 scanner6 = new Scanner6();
-		Scanner7 scanner7 = new Scanner7();
+		//Scanner7 scanner7 = new Scanner7();
         Scanner8 scanner8 = new Scanner8();
         //Console.WriteLine(scanner1.CalcCalib(dataStr1));
         //Console.WriteLine(scanner2.GetValidGames(dataStr2));
