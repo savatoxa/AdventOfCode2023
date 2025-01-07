@@ -50,8 +50,6 @@ public class Scanner8
     }
     public Tuple<List<string>, int> GetListOfNodesByAllMoves(List<string> inputlist, int count)
     {
-        //Tuple<List<string>, int> output = new Tuple<List<string>, int>(null, 0);
-        //Tuple<List<string>, int> output = new Tuple<List<string>, int>(new List<string>(), 0);
         foreach (var move in moves)
         {
             inputlist = GetListOfNodesByMove(inputlist, move);
@@ -102,16 +100,16 @@ public class Scanner8
             gcd = GCD(gcd, numlist[i]);
         return gcd;
     }
-    public long LCMofAllnodesA()
+    public long LCMMyltiplyN()
     {
         List<int> allSeq = new List<int>();
-        long multAllSeq = 1;
         foreach (var node in nodesA)
             allSeq.Add(GetNodeByAllMoves(node, 0).Item2);
         long gcdAllSeq = GCDMyltiplyN(allSeq);
-        foreach (var num in allSeq)
-            multAllSeq *= num/gcdAllSeq;
-        return multAllSeq;
+        long lcmAllseq = (allSeq[0] * allSeq[1]) / gcdAllSeq;
+        for (var i = 2; i < allSeq.Count; i++)
+            lcmAllseq = (lcmAllseq * allSeq[i]) / gcdAllSeq;
+        return lcmAllseq;
     }
     public void Run(string data)
     {
@@ -119,15 +117,11 @@ public class Scanner8
         CreateMoves(data);
         CreateMap(data);
         nodesA = GetNodesA();
-        //Console.WriteLine(moves);
-        //map.ForEach(m => Console.WriteLine(m));
-        Console.WriteLine("___");
-        nodesA.ForEach(n => Console.WriteLine(n));
         Console.WriteLine("___");
         foreach (var node in nodesA)
             Console.WriteLine(GetNodeByAllMoves(node, 0));
-        Console.WriteLine(LCMofAllnodesA());
         Console.WriteLine("___");
+        Console.WriteLine(LCMMyltiplyN());
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
         Console.WriteLine(elapsedMs);
