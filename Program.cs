@@ -46,8 +46,10 @@ class Program
         //string dataStr8 = File.ReadAllText(workingDirectory + "\\" + "data8_test1.txt");
         //string dataStr8 = File.ReadAllText(workingDirectory + "\\" + "data8_test2.txt");
         //string dataStr8 = File.ReadAllText(workingDirectory + "\\" + "data8_test3.txt");
-        string dataStr9 = File.ReadAllText(workingDirectory + "\\" + "data9.txt");
+        //string dataStr9 = File.ReadAllText(workingDirectory + "\\" + "data9.txt");
         //string dataStr9 = File.ReadAllText(workingDirectory + "\\" + "data9_test1.txt");
+        //string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10.txt");
+        string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10_test1_1.txt");
 
 
 
@@ -60,13 +62,14 @@ class Program
         //Scanner6 scanner6 = new Scanner6();
         //Scanner7 scanner7 = new Scanner7();
         //Scanner8 scanner8 = new Scanner8();
-        Scanner9 scanner9 = new Scanner9();
+        //Scanner9 scanner9 = new Scanner9();
+        Scanner10 scanner10 = new Scanner10();
         //Console.WriteLine(scanner1.CalcCalib(dataStr1));
         //Console.WriteLine(scanner2.GetValidGames(dataStr2));
         //Console.WriteLine(scanner3.SumPartNumbers(dataStr3));
         //Console.WriteLine(scanner4.AllCardsNum(dataStr4));
         //scanner5.Run(dataStr5);
         //scanner7.Run(dataStr7);
-        scanner9.Run(dataStr9);
+        scanner10.Run(dataStr10);
     }
 }
