@@ -21,7 +21,7 @@ public class Scanner10
                     return Tuple.Create(i, j);
         return Tuple.Create(-1, -1);
     }
-    public List<Tuple<int, int>> GetValidCells(Tuple<int, int> inputCell)
+    public List<Tuple<int, int, Char>> GetValidCells(Tuple<int, int, Char> inputCell)
     {
         var upperCellChar = ',';
         var upperRightCellChar = ',';
@@ -33,26 +33,42 @@ public class Scanner10
         var upperLeftCellchar = ',';
 
         if (inputCell.Item1 > 0)
-            upperCellChar = pipemap[inputCell.Item1 - 1][inputCell.Item2];
+        {
+            var upperCell = Tuple.Create(inputCell.Item1 - 1, inputCell.Item2, pipemap[inputCell.Item1 - 1][inputCell.Item2]);
+        }
         if (inputCell.Item1 > 0 && inputCell.Item2 < pipemap[0].Count - 1)
-            upperRightCellChar = pipemap[inputCell.Item1 - 1][inputCell.Item2 + 1];
+        {
+            var upperRightCell = Tuple.Create(inputCell.Item1 - 1, inputCell.Item2 + 1, pipemap[inputCell.Item1 - 1][inputCell.Item2 + 1]);
+        }
         if (inputCell.Item2 < pipemap[0].Count - 1)
-            rightCellChar = pipemap[inputCell.Item1][inputCell.Item2 + 1];
+        {
+            var rightCell = Tuple.Create(inputCell.Item1, inputCell.Item2 + 1, pipemap[inputCell.Item1][inputCell.Item2 + 1]);
+        }
         if (inputCell.Item1 < pipemap.Count - 1 && inputCell.Item2 < pipemap[0].Count - 1)
-            lowerRightCellChar = pipemap[inputCell.Item1 + 1][inputCell.Item2 + 1];
+        {
+            var lowerRightCell = Tuple.Create(inputCell.Item1+1, inputCell.Item2+1, pipemap[inputCell.Item1 + 1][inputCell.Item2 + 1]);
+        }
         if (inputCell.Item1 < pipemap.Count - 1)
-            lowerCellChar = pipemap[inputCell.Item1 + 1][inputCell.Item2];
+        {
+            var lowerCell = Tuple.Create(inputCell.Item1+1, inputCell.Item2, pipemap[inputCell.Item1 + 1][inputCell.Item2]);
+        }
         if (inputCell.Item1 < pipemap.Count - 1 && inputCell.Item2 > 0)
-            lowerLeftCellChar = pipemap[inputCell.Item1 + 1][inputCell.Item2 - 1];
+        {
+            var lowerLeftCell = Tuple.Create(inputCell.Item1+1, inputCell.Item2-1, pipemap[inputCell.Item1 + 1][inputCell.Item2 - 1]);
+        }
         if (inputCell.Item2 > 0)
-            leftCellChar = pipemap[inputCell.Item1][inputCell.Item2 - 1];
+        {
+            var leftCell = Tuple.Create(inputCell.Item1, inputCell.Item2-1, pipemap[inputCell.Item1][inputCell.Item2 - 1]);
+        }
         if (inputCell.Item1 > 0 && inputCell.Item2 > 0)
-            upperLeftCellchar = pipemap[inputCell.Item1 - 1][inputCell.Item2 - 1];
+        {
+            var upperLeftCell = Tuple.Create(inputCell.Item1-1, inputCell.Item2-1, pipemap[inputCell.Item1 - 1][inputCell.Item2 - 1]);
+        }
 
 
         var inputcellChar = pipemap[inputCell.Item1][inputCell.Item2];
-        Console.WriteLine(inputcellChar);
-        Console.WriteLine(upperCellChar);
+        Console.WriteLine(inputСell);
+        Console.WriteLine(upperCell);
         Console.WriteLine(upperRightCellChar);
         Console.WriteLine(rightCellChar);
         Console.WriteLine(lowerRightCellChar);
@@ -60,7 +76,7 @@ public class Scanner10
         Console.WriteLine(lowerLeftCellChar);
         Console.WriteLine(leftCellChar);
         Console.WriteLine(upperLeftCellchar);
-        var outputcells = new List<Tuple<int, int>>();
+        var outputcells = new List<Tuple<int, int, Char>>();
         return outputcells;
     }
     public void Run(string data)
@@ -69,7 +85,7 @@ public class Scanner10
         CreatePipemap(data);
         parser.PrintMatrix(pipemap);
         Console.WriteLine("___");
-        GetValidCells(Tuple.Create(0,0));
+        GetValidCells(Tuple.Create(0,0, ' '));
         //GetValidCells(GetStart());
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
