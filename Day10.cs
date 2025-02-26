@@ -12,6 +12,7 @@ public class Scanner10
     public void CreatePipemap(string data)
     {
         pipemap = parser.GetCharMatrix(data);
+        parser.PrintMatrix(pipemap);
     }
     public Tuple<int, int> GetStart ()
     {
@@ -30,28 +31,40 @@ public class Scanner10
         var lowerCellChar = ',';
         var lowerLeftCellChar = ',';
         var leftCellChar = ',';
-        var upperLeftCellchar = ',';
+        var upperLeftCellChar = ',';
 
-        if (inputCell.Item1 > 0)
+        if (inputCell.Item1 > 0)        
             upperCellChar = pipemap[inputCell.Item1 - 1][inputCell.Item2];
         if (inputCell.Item1 > 0 && inputCell.Item2 < pipemap[0].Count - 1)
             upperRightCellChar = pipemap[inputCell.Item1 - 1][inputCell.Item2 + 1];
         if (inputCell.Item2 < pipemap[0].Count - 1)
             rightCellChar = pipemap[inputCell.Item1][inputCell.Item2 + 1];
-        if (inputCell.Item1 < pipemap.Count - 1 && inputCell.Item2 < pipemap[0].Count - 1)
+        if (inputCell.Item1 < pipemap.Count - 1 && inputCell.Item2 < pipemap[0].Count - 1) 
             lowerRightCellChar = pipemap[inputCell.Item1 + 1][inputCell.Item2 + 1];
-        if (inputCell.Item1 < pipemap.Count - 1)
+        if (inputCell.Item1 < pipemap.Count - 1)        
             lowerCellChar = pipemap[inputCell.Item1 + 1][inputCell.Item2];
         if (inputCell.Item1 < pipemap.Count - 1 && inputCell.Item2 > 0)
             lowerLeftCellChar = pipemap[inputCell.Item1 + 1][inputCell.Item2 - 1];
         if (inputCell.Item2 > 0)
             leftCellChar = pipemap[inputCell.Item1][inputCell.Item2 - 1];
         if (inputCell.Item1 > 0 && inputCell.Item2 > 0)
-            upperLeftCellchar = pipemap[inputCell.Item1 - 1][inputCell.Item2 - 1];
+            upperLeftCellChar = pipemap[inputCell.Item1 - 1][inputCell.Item2 - 1];
 
+        switch (pipemap[inputCell.Item1][inputCell.Item2])
+        {
+            case 'S':
+                Console.WriteLine("Case: "+'S');
+
+                break;
+            case '.':
+                Console.WriteLine("Case: "+'.');
+                break;
+            default:
+                break;
+        }
 
         var inputcellChar = pipemap[inputCell.Item1][inputCell.Item2];
-        Console.WriteLine(inputcellChar);
+        Console.WriteLine(inputCell);
         Console.WriteLine(upperCellChar);
         Console.WriteLine(upperRightCellChar);
         Console.WriteLine(rightCellChar);
@@ -59,15 +72,16 @@ public class Scanner10
         Console.WriteLine(lowerCellChar);
         Console.WriteLine(lowerLeftCellChar);
         Console.WriteLine(leftCellChar);
-        Console.WriteLine(upperLeftCellchar);
+        Console.WriteLine(upperLeftCellChar);
         var outputcells = new List<Tuple<int, int>>();
         return outputcells;
     }
+
     public void Run(string data)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
         CreatePipemap(data);
-        parser.PrintMatrix(pipemap);
+        Console.WriteLine(GetStart());
         Console.WriteLine("___");
         GetValidCells(Tuple.Create(0,0));
         //GetValidCells(GetStart());
