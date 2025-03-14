@@ -53,7 +53,7 @@ public class Scanner10
         switch (pipemap[inputCell.Item1][inputCell.Item2])
         {
             case 'S':
-                Console.WriteLine("Case: " + 'S');
+                //Console.WriteLine("Case: " + 'S');
                 if (upperCellChar == '|' || upperCellChar == '7' || upperCellChar == 'F')
                     outputcells.Add(Tuple.Create(inputCell.Item1 - 1, inputCell.Item2));
                 if (rightCellChar == 'J' || rightCellChar == '-' || rightCellChar == '7')
@@ -64,38 +64,45 @@ public class Scanner10
                     outputcells.Add(Tuple.Create(inputCell.Item1, inputCell.Item2 - 1));
                 break;
             case '.':
-                Console.WriteLine("Case: " + '.');
+                //Console.WriteLine("Case: " + '.');
                 break;
             case 'F':
-                Console.WriteLine("Case: " + 'F');
+                //Console.WriteLine("Case: " + 'F');
                 if (rightCellChar == 'J' || rightCellChar == '-' || rightCellChar == '7')
                     outputcells.Add(Tuple.Create(inputCell.Item1, inputCell.Item2 + 1));
                 if (lowerCellChar == '|' || lowerCellChar == 'J' || lowerCellChar == 'L')
                     outputcells.Add(Tuple.Create(inputCell.Item1 + 1, inputCell.Item2));
                 break;
             case '7':
-                Console.WriteLine("Case: " + '7');
+                //Console.WriteLine("Case: " + '7');
                 if (lowerCellChar == '|' || lowerCellChar == 'J' || lowerCellChar == 'L')
                     outputcells.Add(Tuple.Create(inputCell.Item1 + 1, inputCell.Item2));
                 if (leftCellChar == '-' || leftCellChar == 'F' || leftCellChar == 'L')
                     outputcells.Add(Tuple.Create(inputCell.Item1, inputCell.Item2 - 1));
                 break;
             case 'J':
-                Console.WriteLine("Case: " + 'J');
+                //Console.WriteLine("Case: " + 'J');
                 if (upperCellChar == '|' || upperCellChar == '7' || upperCellChar == 'F')
                     outputcells.Add(Tuple.Create(inputCell.Item1 - 1, inputCell.Item2));
                 if (leftCellChar == '-' || leftCellChar == 'F' || leftCellChar == 'L')
                     outputcells.Add(Tuple.Create(inputCell.Item1, inputCell.Item2 - 1));
                 break;
+            case 'L':
+               //Console.WriteLine("Case: " + 'L');
+                if (upperCellChar == '|' || upperCellChar == '7' || upperCellChar == 'F')
+                    outputcells.Add(Tuple.Create(inputCell.Item1 - 1, inputCell.Item2));
+                if (rightCellChar == 'J' || rightCellChar == '-' || rightCellChar == '7')
+                    outputcells.Add(Tuple.Create(inputCell.Item1, inputCell.Item2 + 1));
+                break;
             case '-':
-                Console.WriteLine("Case: " + '-');
+                //Console.WriteLine("Case: " + '-');
                 if (leftCellChar == '-' || leftCellChar == 'F' || leftCellChar == 'L')
                     outputcells.Add(Tuple.Create(inputCell.Item1, inputCell.Item2 - 1));
                 if (rightCellChar == 'J' || rightCellChar == '-' || rightCellChar == '7')
                     outputcells.Add(Tuple.Create(inputCell.Item1, inputCell.Item2 + 1));
                 break;
             case '|':
-                Console.WriteLine("Case: " + '|');
+                //Console.WriteLine("Case: " + '|');
                 if (upperCellChar == '|' || upperCellChar == '7' || upperCellChar == 'F')
                     outputcells.Add(Tuple.Create(inputCell.Item1 - 1, inputCell.Item2));
                 if (lowerCellChar == '|' || lowerCellChar == 'J' || lowerCellChar == 'L')
@@ -104,20 +111,46 @@ public class Scanner10
             default:
                 break;
         }
-
         var inputcellChar = pipemap[inputCell.Item1][inputCell.Item2];
-        Console.WriteLine(inputCell);
-        Console.WriteLine(upperCellChar);
-        Console.WriteLine(upperRightCellChar);
-        Console.WriteLine(rightCellChar);
-        Console.WriteLine(lowerRightCellChar);
-        Console.WriteLine(lowerCellChar);
-        Console.WriteLine(lowerLeftCellChar);
-        Console.WriteLine(leftCellChar);
-        Console.WriteLine(upperLeftCellChar);
+        //Console.WriteLine(inputCell);
+        //Console.WriteLine(upperCellChar);
+        //Console.WriteLine(upperRightCellChar);
+        //Console.WriteLine(rightCellChar);
+        //Console.WriteLine(lowerRightCellChar);
+        //Console.WriteLine(lowerCellChar);
+        //Console.WriteLine(lowerLeftCellChar);
+        //Console.WriteLine(leftCellChar);
+        //Console.WriteLine(upperLeftCellChar);
         return outputcells;
     }
-
+    public List<Tuple<int, int>> NotCoincidingCells(List<Tuple<int, int>> incomingcellslist, List<Tuple<int, int>> prevcellslist)
+    {
+        List<Tuple<int, int>> notCoincidingCells = new List<Tuple<int, int>>();
+        foreach(var incomingcell in incomingcellslist)
+            foreach (var prevcell in prevcellslist)
+            {
+                if (!incomingcell.Equals(prevcell))
+                    notCoincidingCells.Add(incomingcell);
+            }
+        return notCoincidingCells;
+    }
+    public List<Tuple<int, int>> GatAllValidCells(List<Tuple<int, int>> inputcells, List<Tuple<int, int>> previnputcells)
+    {
+        Console.WriteLine("inputcells:");
+        inputcells.ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
+        var outputcells = new List<Tuple<int, int>>();
+        foreach (var cell in inputcells)
+        {
+            //Console.WriteLine("inputcell:");
+            //Console.WriteLine(pipemap[cell.Item1][cell.Item2]);
+            
+            outputcells.AddRange(GetValidCells(cell));
+            //GetValidCells(cell).ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
+        }
+        Console.WriteLine("outputcells:");
+        outputcells.ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
+        return GatAllValidCells(outputcells, previnputcells);
+    }
     public void Run(string data)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
@@ -125,8 +158,8 @@ public class Scanner10
         parser.PrintMatrix(pipemap);
         //Console.WriteLine(GetStart());
         Console.WriteLine("___");
-        GetValidCells(Tuple.Create(1,3)).ForEach(c => Console.WriteLine(c));
-        //GetValidCells(GetStart());
+        //GetValidCells(Tuple.Create(2,1)).ForEach(c => Console.WriteLine(c));
+        GatAllValidCells(new List<Tuple<int, int>> { GetStart()}, new List<Tuple<int, int>> {GetStart()}).ForEach(c => Console.WriteLine(c));
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
         Console.WriteLine(elapsedMs);

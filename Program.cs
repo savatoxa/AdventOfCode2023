@@ -49,8 +49,10 @@ class Program
         //string dataStr9 = File.ReadAllText(workingDirectory + "\\" + "data9.txt");
         //string dataStr9 = File.ReadAllText(workingDirectory + "\\" + "data9_test1.txt");
         //string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10.txt");
-        //string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10_test1_1.txt");
-        string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10_test2_1.txt");
+        string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10_test1_1.txt");
+        //string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10_test1_2.txt");
+        //string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10_test2_1.txt");
+        //string dataStr10 = File.ReadAllText(workingDirectory + "\\" + "data10_test2_2.txt");
 
 
 
