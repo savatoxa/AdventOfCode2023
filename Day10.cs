@@ -151,6 +151,14 @@ public class Scanner10
         outputcells.ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
         return GatAllValidCells(outputcells, previnputcells);
     }
+
+    public void TestNotCoincidingCells()
+    {
+        var incomcells = new List<Tuple<int, int>> { Tuple.Create(1, 1), Tuple.Create(2, 2) };
+        var prevcells = new List<Tuple<int, int>> { Tuple.Create(1, 1), Tuple.Create(3, 3) };
+        NotCoincidingCells(incomcells, prevcells).ForEach(c => Console.WriteLine(c));
+    }
+
     public void Run(string data)
     {
         var watch = System.Diagnostics.Stopwatch.StartNew();
@@ -159,7 +167,8 @@ public class Scanner10
         //Console.WriteLine(GetStart());
         Console.WriteLine("___");
         //GetValidCells(Tuple.Create(2,1)).ForEach(c => Console.WriteLine(c));
-        GatAllValidCells(new List<Tuple<int, int>> { GetStart()}, new List<Tuple<int, int>> {GetStart()}).ForEach(c => Console.WriteLine(c));
+        //GatAllValidCells(new List<Tuple<int, int>> { GetStart()}, new List<Tuple<int, int>> {GetStart()}).ForEach(c => Console.WriteLine(c));
+        TestNotCoincidingCells();
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
         Console.WriteLine(elapsedMs);
