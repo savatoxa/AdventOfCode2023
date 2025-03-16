@@ -123,39 +123,50 @@ public class Scanner10
         //Console.WriteLine(upperLeftCellChar);
         return outputcells;
     }
+    public bool IfTupleInTupleList(Tuple<int, int> incell, List<Tuple<int, int>> cellslist)
+    {   
+        foreach(var cell in cellslist)
+            if (incell.Equals(cell))
+                return true;
+        return false;
+    }
     public List<Tuple<int, int>> NotCoincidingCells(List<Tuple<int, int>> incomingcellslist, List<Tuple<int, int>> prevcellslist)
     {
         List<Tuple<int, int>> notCoincidingCells = new List<Tuple<int, int>>();
-        foreach(var incomingcell in incomingcellslist)
-            foreach (var prevcell in prevcellslist)
-            {
-                if (!incomingcell.Equals(prevcell))
-                    notCoincidingCells.Add(incomingcell);
-            }
+        foreach (var incomingcell in incomingcellslist)
+            if (!IfTupleInTupleList(incomingcell, prevcellslist))
+                notCoincidingCells.Add(incomingcell);
         return notCoincidingCells;
     }
-    public List<Tuple<int, int>> GatAllValidCells(List<Tuple<int, int>> inputcells, List<Tuple<int, int>> previnputcells)
+    public List<Tuple<int, int>> GatAllValidCells(List<Tuple<int, int>> inputcells)
     {
+        
         Console.WriteLine("inputcells:");
         inputcells.ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
         var outputcells = new List<Tuple<int, int>>();
+        int cnt = 0;
         foreach (var cell in inputcells)
         {
             //Console.WriteLine("inputcell:");
             //Console.WriteLine(pipemap[cell.Item1][cell.Item2]);
-            
-            outputcells.AddRange(GetValidCells(cell));
+            cnt++;
+            var notCoincidingCells = NotCoincidingCells(GetValidCells(cell), inputcells);
+            Console.WriteLine("notCoincidingCells");
+            notCoincidingCells.ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
+            outputcells.AddRange(notCoincidingCells);
             //GetValidCells(cell).ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
         }
+        if (cnt == 20)
+            return outputcells;
         Console.WriteLine("outputcells:");
         outputcells.ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
-        return GatAllValidCells(outputcells, previnputcells);
+        return GatAllValidCells(outputcells);
     }
 
     public void TestNotCoincidingCells()
     {
-        var incomcells = new List<Tuple<int, int>> { Tuple.Create(1, 1), Tuple.Create(2, 2) };
-        var prevcells = new List<Tuple<int, int>> { Tuple.Create(1, 1), Tuple.Create(3, 3) };
+        var incomcells = new List<Tuple<int, int>> { Tuple.Create(3, 3), Tuple.Create(1, 1) };
+        var prevcells = new List<Tuple<int, int>> { Tuple.Create(3, 3), Tuple.Create(1, 1) };
         NotCoincidingCells(incomcells, prevcells).ForEach(c => Console.WriteLine(c));
     }
 
@@ -167,8 +178,8 @@ public class Scanner10
         //Console.WriteLine(GetStart());
         Console.WriteLine("___");
         //GetValidCells(Tuple.Create(2,1)).ForEach(c => Console.WriteLine(c));
-        //GatAllValidCells(new List<Tuple<int, int>> { GetStart()}, new List<Tuple<int, int>> {GetStart()}).ForEach(c => Console.WriteLine(c));
-        TestNotCoincidingCells();
+        GatAllValidCells(new List<Tuple<int, int>> { GetStart()}).ForEach(c => Console.WriteLine(c));
+        //TestNotCoincidingCells();
         watch.Stop();
         var elapsedMs = watch.Elapsed.TotalMilliseconds;
         Console.WriteLine(elapsedMs);
