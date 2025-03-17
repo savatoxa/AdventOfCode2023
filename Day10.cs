@@ -140,7 +140,6 @@ public class Scanner10
     }
     public List<Tuple<int, int>> GatAllValidCells(List<Tuple<int, int>> inputcells)
     {
-        
         Console.WriteLine("inputcells:");
         inputcells.ForEach(c => Console.WriteLine(pipemap[c.Item1][c.Item2]));
         var outputcells = new List<Tuple<int, int>>();
